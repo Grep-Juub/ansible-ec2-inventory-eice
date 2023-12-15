@@ -1,0 +1,22 @@
+---
+
+plugin: aws_ec2
+profile: <AWS_PROFILE>
+assume_role_arn: "<ROLE_ARN>"
+
+regions:
+  - "us-east-1"
+
+hostnames: "tag:Name"
+
+keyed_groups:
+  - key: tags.Name
+    prefix: ''
+    separator: ''
+
+compose:
+  ansible_connection: eci
+  ansible_host: private_ip_address
+  ansible_ssh_user: "ubuntu" # If you use ubuntu instance ami
+  ansible_ssh_common_args: >
+    "-o ProxyCommand='aws ec2-instance-connect open-tunnel --instance-id {{ instance_id }} --remote-port 22'"

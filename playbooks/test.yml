@@ -1,0 +1,14 @@
+---
+
+- hosts: gitlab
+  connection: eci
+  vars:
+    ansible_ssh_user: "ubuntu"
+    ansible_host_key_checking: False
+  become: true
+  become_method: sudo
+
+  roles:
+    - role: MY_AWESOME_ROME
+      tags:
+        - init

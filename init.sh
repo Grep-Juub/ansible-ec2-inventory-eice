@@ -1,0 +1,1 @@
+export AWS_PROFILE='<AWS_PROFILE>'
